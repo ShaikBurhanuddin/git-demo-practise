@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 
-//Load config from env file (good practice for port)
+//Loads all data in .env into process object, used in next line process.env.PORT (good practice for port)
 require('dotenv').config();
 
 //Taking port from env or by default 8000
 const PORT = process.env.PORT || 8000;
 
-// Middleware to parse json req.body
+// Middleware to parse json from req.body -> the json object in PUT req is read here
 app.use(express.json());
 
 // Importing routed for TODO API
