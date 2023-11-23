@@ -2,7 +2,7 @@ const Todo = require('../models/Todo')
 
 exports.updateTodo = async(req,res) => {
     try{
-//      const id = req.params.id;  
+//      const id = req.params.id;
         const {id} = req.params;
 
         const{title,description} = req.body;
