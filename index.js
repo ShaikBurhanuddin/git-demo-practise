@@ -4,8 +4,8 @@ const app = express();
 //Loads all data in .env into process object, used in next line process.env.PORT (good practice for port)
 require('dotenv').config();
 
-//Taking port from env or by default 8000
-const PORT = process.env.PORT || 8000;
+//Taking port from env or by default 3000
+const PORT = process.env.PORT || 3000;
 
 // Middleware to parse json from req.body -> the json object in PUT req is read here
 app.use(express.json());
