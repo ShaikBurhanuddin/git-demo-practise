@@ -16,6 +16,10 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**'
+    TargetFolder: 'target folder'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
