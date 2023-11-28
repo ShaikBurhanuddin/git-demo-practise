@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -16,3 +11,13 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'kubecluster-sp'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'deployment.yml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
