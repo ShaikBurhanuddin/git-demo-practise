@@ -57,3 +57,14 @@ spec:
         ports:
         - containerPort: 27017  # Default MongoDB port
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017  # The port on which MongoDB is running
+      targetPort: 27017
