@@ -37,4 +37,23 @@ spec:
       targetPort: 3000  # Port on which your Node.js app is running
   type: NodePort  # Adjust based on your infrastructure (e.g., NodePort, ClusterIP)
   ---
-  
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1  # Usually, you have one MongoDB instance per pod
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb 
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:4.4.25  # Replace with your MongoDB image
+        ports:
+        - containerPort: 27017  # Default MongoDB port
+---
