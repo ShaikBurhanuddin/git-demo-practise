@@ -17,3 +17,11 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
   
+- task: KubernetesManifest@1
+  inputs:
+    action: 'deploy'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'kube-sp'
+    namespace: 'default'
+    containers: 'mvnrepo'
+    imagePullSecrets: 'docker pull mvnrepo.azurecr.io/nodejs:13'
