@@ -36,7 +36,7 @@ spec:
       port: 3001  # Expose the service on port 3001, adjust as needed
       targetPort: 3000  # Port on which your Node.js app is running
   type: NodePort  # Adjust based on your infrastructure (e.g., NodePort, ClusterIP)
-  ---
+---
   apiVersion: apps/v1
 kind: Deployment
 metadata:
