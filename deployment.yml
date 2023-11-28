@@ -24,3 +24,17 @@ spec:
       imagePullSecrets:
       - name: my-secret
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+spec:
+  selector:
+    app: nodejs-app
+  ports:
+    - protocol: TCP
+      port: 3001  # Expose the service on port 3001, adjust as needed
+      targetPort: 3000  # Port on which your Node.js app is running
+  type: NodePort  # Adjust based on your infrastructure (e.g., NodePort, ClusterIP)
+  ---
+  
