@@ -16,13 +16,3 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-
-- task: Kubernetes@1
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'kubecluster-sp'
-    command: 'apply'
-    useConfigurationFile: true
-    configuration: 'deployment/deployment.yml'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
