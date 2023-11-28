@@ -23,6 +23,6 @@ steps:
     kubernetesServiceEndpoint: 'kubecluster-sp'
     command: 'apply'
     useConfigurationFile: true
-    configuration: '/deployment.yml'
+    configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
