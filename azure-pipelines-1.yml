@@ -2,6 +2,11 @@
 trigger:
 - none
 
+resources:
+  repositories:
+  - repository: self
+    # This points to the current repository
+    ref: none
 
 pool:
   vmImage: ubuntu-latest
