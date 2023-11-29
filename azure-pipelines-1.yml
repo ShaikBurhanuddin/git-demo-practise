@@ -1,0 +1,18 @@
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'kubecluster-sp'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'deployment/deployment.yml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
