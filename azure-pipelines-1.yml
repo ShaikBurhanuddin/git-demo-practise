@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+resources:
+  repositories:
+  - repository: self
+    # This points to the current repository
+    ref: none
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'kubecluster-sp'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'deployment/deployment.yml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
