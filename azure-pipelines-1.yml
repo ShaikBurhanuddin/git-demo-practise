@@ -4,14 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- none
 
 resources:
   pipelines:
   - pipeline: securitylib # Name of the pipeline resource.
     source: TodoList-NodeJS-Backend-build # The name of the pipeline referenced by this pipeline resource.
 #    project: FabrikamProject # Required only if the source pipeline is in another project
-    trigger: true # Run app-ci pipeline when any run of security-lib-ci completes
+    trigger: 
+     branches:
+     - master
+#   true # Run app-ci pipeline when any run of security-lib-ci completes
 
 pool:
   vmImage: ubuntu-latest
