@@ -1,6 +1,12 @@
 
 trigger:
-- none
+  branches:
+    include:
+      - master
+  pr:
+    branches:
+      - '*'
+
 
 pool:
   vmImage: ubuntu-latest
