@@ -1,11 +1,6 @@
 
 trigger:
-  branches:
-    include:
-      - master
-  pr:
-    branches:
-      - '*'
+- master
 
 
 pool:
