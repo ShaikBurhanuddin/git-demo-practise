@@ -30,3 +30,4 @@ steps:
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
+    arguments: '--set kubernetes=no-stop'  # pass additional arguments to kubectl
