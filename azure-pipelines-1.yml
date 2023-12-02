@@ -31,4 +31,4 @@ steps:
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
     arguments: '
-      -- 'set kubernetes=no-stop'   # pass additional arguments to kubectl
+      set kubernetes=no-stop   # pass additional arguments to kubectl
