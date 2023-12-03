@@ -26,8 +26,8 @@ steps:
     kubernetesServiceEndpoint: 'kubecluster-sp'
     namespace: 'default'
     command: 'apply'
+    arguments: no-stop   # pass additional arguments to kubectl
     useConfigurationFile: true
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-    arguments: no-stop   # pass additional arguments to kubectl
