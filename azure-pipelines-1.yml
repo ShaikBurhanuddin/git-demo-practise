@@ -30,4 +30,5 @@ steps:
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-#   arguments: no-stop   # pass additional arguments to kubectl
+- script: 
+    az aks start --name burhanuddin-kuber --resource-group nodejs-rg
