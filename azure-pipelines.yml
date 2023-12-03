@@ -16,3 +16,4 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    az aks start --name burhanuddin-kuber --resource-group nodejs-rg
