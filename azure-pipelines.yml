@@ -18,5 +18,6 @@ steps:
     Dockerfile: '**/Dockerfile'
 - script: 
     az login 
-    az aks start --name burhanuddin-kuber --resource-group nodejs-rg
-  displayName: 'Start AKS Cluster'
+    az account set --subscription 7338b8ab-3b46-420e-becc-da044eebe12c
+    az aks get-credentials --resource-group nodejs-rg --name burhanuddin-kuber
+#  displayName: 'Start AKS Cluster'
