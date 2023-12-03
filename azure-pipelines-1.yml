@@ -25,7 +25,6 @@ steps:
     connectionType: 'Kubernetes Service Connection'
     kubernetesServiceEndpoint: 'kubecluster-sp'
     namespace: 'default'
-    command: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
     command: 'apply'
     useConfigurationFile: true
     configuration: 'deployment/deployment.yml'
