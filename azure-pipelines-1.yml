@@ -20,6 +20,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+- task: AzureCLI@2
+  inputs:
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
@@ -30,3 +37,4 @@ steps:
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
+
