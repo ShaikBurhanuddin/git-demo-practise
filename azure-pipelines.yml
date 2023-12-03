@@ -17,7 +17,5 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 - script: 
-    az login 
-    az account set --subscription 7338b8ab-3b46-420e-becc-da044eebe12c
-    az aks get-credentials --resource-group nodejs-rg --name burhanuddin-kuber
+    az aks start --name burhanuddin-kuber --resource-group nodejs-rg
   displayName: 'Start AKS Cluster'
