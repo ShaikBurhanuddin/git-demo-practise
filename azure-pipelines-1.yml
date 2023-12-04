@@ -26,6 +26,10 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
+- script:
+    az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
+    docker pull mvnrepo.azurecr.io/nodejs
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
