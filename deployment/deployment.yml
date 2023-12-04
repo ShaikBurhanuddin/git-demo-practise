@@ -21,8 +21,6 @@ spec:
         env:
           - name: DATABASE_URL
             value: "mongodb://mongodb-service:27017/myDataBase"
-      imagePullSecrets:
-      - name: my-secret
 ---
 apiVersion: v1
 kind: Service
