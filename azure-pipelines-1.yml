@@ -43,7 +43,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Free Trial(7338b8ab-3b46-420e-becc-da044eebe12c)'
+    azureSubscription: 'kubernetes-sp'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script.sh'
