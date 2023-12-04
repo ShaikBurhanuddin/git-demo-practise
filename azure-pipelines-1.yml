@@ -38,3 +38,4 @@ steps:
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
 
+
