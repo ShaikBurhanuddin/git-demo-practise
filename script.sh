@@ -3,6 +3,9 @@
 # Replace 'your-service-name' with the actual name of your LoadBalancer service
 SERVICE_NAME="nodejs-service"
 
+az account set --subscription 7338b8ab-3b46-420e-becc-da044eebe12c
+az aks get-credentials --resource-group nodejs-rg --name burhanuddin-kuber
+
 # Get the external IP address of the LoadBalancer service
 EXTERNAL_IP=$(kubectl get services "$SERVICE_NAME" -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
@@ -17,3 +20,5 @@ else
   # Print the result of the curl command
   echo "Curl Result: $curl_result"
 fi
+
+az aks start --name burhanuddin-kuber --resource-group nodejs-rg
