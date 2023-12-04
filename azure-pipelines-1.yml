@@ -26,6 +26,7 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
@@ -36,4 +37,10 @@ steps:
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
+    azureSubscriptionEndpointForSecrets: 'Free Trial(7338b8ab-3b46-420e-becc-da044eebe12c)'
+    azureContainerRegistry: 'mvnrepo.azurecr.io'
+    secretName: 'burhan-acr-secret'
 
+- task: Bash@3
+  inputs:
+    filePath: './script.sh'
