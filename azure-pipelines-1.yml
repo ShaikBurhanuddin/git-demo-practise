@@ -41,13 +41,6 @@ steps:
     azureContainerRegistry: 'mvnrepo.azurecr.io'
     secretName: 'burhan-acr-secret'
 
-- task: AzureCLI@2
+- task: Bash@3
   inputs:
-    azureSubscription: 'kubernetes-sp'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'kubectl get services -n default'  # Get the IP of a service
-    failOnStandardError: true
-    displayName: 'Get Service IP'
-    env:
-      KUBECONFIG: $(Build.SourcesDirectory)/kubeconfig_$(burhanuddin-kuber)
+    filePath: './script.sh'
