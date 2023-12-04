@@ -41,6 +41,9 @@ steps:
     azureContainerRegistry: 'mvnrepo.azurecr.io'
     secretName: 'burhan-acr-secret'
 
-- task: Bash@3
+- task: AzureCLI@2
   inputs:
-    filePath: './script.sh'
+    azureSubscription: 'Free Trial(7338b8ab-3b46-420e-becc-da044eebe12c)'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './script.sh'
