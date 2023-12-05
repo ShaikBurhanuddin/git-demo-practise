@@ -21,12 +21,12 @@ pool:
 
 steps:
 
-#- task: AzureCLI@2
-#  inputs:
-#    azureSubscription: 'kubernetes-sp'
-#    scriptType: 'bash'
-#    scriptLocation: 'scriptPath'
-#    scriptPath: './script2.sh'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'kubernetes-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './script2.sh'
 
 - task: Kubernetes@1
   inputs:
@@ -42,12 +42,12 @@ steps:
     azureContainerRegistry: 'mvnrepo.azurecr.io'
     secretName: 'burhanuddin-acr-secret'
 
-#- task: AzureCLI@2
-#  inputs:
-#    azureSubscription: 'kubernetes-sp'
-#    scriptType: 'bash'
-#    scriptLocation: 'scriptPath'
-#    scriptPath: './script.sh'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'kubernetes-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './script.sh'
 
 
 
