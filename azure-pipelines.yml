@@ -16,4 +16,3 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: 'v1-deploy'
