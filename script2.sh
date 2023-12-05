@@ -12,7 +12,7 @@ else
     echo "Starting AKS cluster.."
     
     # Start the AKS cluster
-    az aks start --name "$aks_cluster_name" --resource-group "nodejs-rg"
+    az aks start --name $aks_cluster_name --resource-group nodejs-rg
     
     # You may need to wait for the cluster to start if needed
     # Add your additional commands or logic here
