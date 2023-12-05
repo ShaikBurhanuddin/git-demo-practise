@@ -1,24 +1,21 @@
 #!/bin/bash
 
-# Replace 'your-service-name' with the actual name of your LoadBalancer service
-SERVICE_NAME="nodejs-service"
+# Assuming your AKS cluster name is stored in a variable
+aks_cluster_name="burhanuddin-kuber"
 
-az account set --subscription 7338b8ab-3b46-420e-becc-da044eebe12c
-az aks get-credentials --resource-group nodejs-rg --name burhanuddin-kuber
-az aks start --name burhanuddin-kuber --resource-group nodejs-rg
+# Check if the AKS cluster is already running
+cluster_status=$(az aks show --name "$aks_cluster_name" --resource-group "nodejs-rg" --query 'provisioningState' -o tsv)
 
-# Get the external IP address of the LoadBalancer service
-EXTERNAL_IP=$(kubectl get services "$SERVICE_NAME" -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-
-if [ -z "$EXTERNAL_IP" ]; then
-  echo "External IP not available yet. Please wait for the LoadBalancer to provision an external IP."
+if [ "$cluster_status" == "Succeeded" ]; then
+    echo "AKS cluster is already running."
 else
-  echo "External IP Address: $EXTERNAL_IP"
-  
-  # Use curl to make a request to the service using the external IP
-  curl_result=$(curl -sS "http://$EXTERNAL_IP:3001")
-  
-  # Print the result of the curl command
-  echo "Curl Result: $curl_result"
+    echo "Starting AKS cluster..."
+    
+    # Start the AKS cluster
+    az aks start --name "$aks_cluster_name" --resource-group "nodejs-rg"
+    
+    # You may need to wait for the cluster to start if needed
+    # Add your additional commands or logic here
+    
+    echo "AKS cluster started successfully."
 fi
-

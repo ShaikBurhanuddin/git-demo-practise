@@ -22,4 +22,3 @@ else
 fi
 
 az aks stop --name burhanuddin-kuber --resource-group nodejs-rg
-
