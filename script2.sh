@@ -9,7 +9,7 @@ cluster_status=$(az aks show --name "$aks_cluster_name" --resource-group "nodejs
 if [ "$cluster_status" == "Succeeded" ]; then
     echo "AKS cluster is already running."
 else
-    echo "Starting AKS cluster..."
+    echo "Starting AKS cluster.."
     
     # Start the AKS cluster
     az aks start --name "$aks_cluster_name" --resource-group "nodejs-rg"
