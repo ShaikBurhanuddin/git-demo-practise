@@ -23,7 +23,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'kubernetes-sp'
+    azureSubscription: 'my-portal-for-k8s'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
@@ -46,7 +46,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'kubernetes-sp'
+    azureSubscription: 'my-portal-for-k8s'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script.sh'
