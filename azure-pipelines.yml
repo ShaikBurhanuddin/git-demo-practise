@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'mvnrepo'
+    containerRegistry: 'to-my-mvnrepo'
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
