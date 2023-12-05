@@ -3,7 +3,7 @@
 # Replace 'your-service-name' with the actual name of your LoadBalancer service
 SERVICE_NAME="nodejs-service"
 
-az account set --subscription 7338b8ab-3b46-420e-becc-da044eebe12c
+# az account set --subscription 7338b8ab-3b46-420e-becc-da044eebe12c
 az aks get-credentials --resource-group nodejs-rg --name burhanuddin-kuber
 
 # Get the external IP address of the LoadBalancer service
