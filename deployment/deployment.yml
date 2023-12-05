@@ -21,7 +21,7 @@ spec:
         env:
           - name: DATABASE_URL
             value: "mongodb://mongodb-service:27017/myDataBase"
-      imagePullSecrets:
+      imagePullSecrets: 
       - name: burhanuddin-acr-secret
 ---
 apiVersion: v1
