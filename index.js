@@ -27,5 +27,5 @@ dbConnect();
 
 //Default route
 app.get('/',(req,res) =>{
-    res.send(`<h1> Welcome to the Appnetwise </h1>`)
+    res.send(`<h1> Welcome to the Appnetwise 05-12-23 </h1>`)
 })
