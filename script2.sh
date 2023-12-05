@@ -1,21 +1,20 @@
 #!/bin/bash
 
-# Assuming your AKS cluster name is stored in a variable
-aks_cluster_name="burhanuddin-kuber"
+# Set your AKS cluster name and resource group
+AKS_CLUSTER_NAME="burhanuddin-kuber"
+RESOURCE_GROUP="nodejs-rg"
+
+# Set the subscription ID
+SUBSCRIPTION_ID="d038c3e3-1166-4425-a005-78d7ee94df8a"
+az account set --subscription $SUBSCRIPTION_ID
 
 # Check if the AKS cluster is already running
-cluster_status=$(az aks show --name "$aks_cluster_name" --resource-group "nodejs-rg" --query 'provisioningState' -o tsv)
+CLUSTER_STATUS=$(az aks show --name burhanuddin-kuber --resource-group nodejs-rg --query 'powerState.code' -o tsv)
 
-if [ "$cluster_status" == "Succeeded" ]; then
-    echo "AKS cluster is already running."
-else
-    echo "Starting AKS cluster.."
-    
+if [ "$CLUSTER_STATUS" == "Stopped" ]; then
     # Start the AKS cluster
-    az aks start --name $aks_cluster_name --resource-group nodejs-rg
-    
-    # You may need to wait for the cluster to start if needed
-    # Add your additional commands or logic here
-    
-    echo "AKS cluster started successfully."
+    echo "Starting AKS cluster..."
+    az aks start --name burhanuddin-kuber --resource-group nodejs-rg
+else
+    echo "AKS cluster is already running."
 fi
