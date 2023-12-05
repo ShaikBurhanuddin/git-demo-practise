@@ -30,15 +30,17 @@ steps:
 
 - task: Kubernetes@1
   inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'kubecluster-sp'
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'my-portal-for-k8s'
+    azureResourceGroup: 'nodejs-rg'
+    kubernetesCluster: 'burhanuddin-kuber'
     namespace: 'default'
     command: 'apply'
     useConfigurationFile: true
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-    azureSubscriptionEndpointForSecrets: 'Free Trial(7338b8ab-3b46-420e-becc-da044eebe12c)'
+    azureSubscriptionEndpointForSecrets: 'my-portal-for-k8s'
     azureContainerRegistry: 'mvnrepo.azurecr.io'
     secretName: 'burhanuddin-acr-secret'
 
