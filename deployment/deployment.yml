@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs
-        image: mvnrepo.azurecr.io/nodejs:${Build.Buildid}
+        image: mvnrepo.azurecr.io/nodejs:$(Build.BuildID)
         imagePullPolicy: "Always"  # Change to your image pull policy
         ports:
         - containerPort: 3000  # Adjust as needed
