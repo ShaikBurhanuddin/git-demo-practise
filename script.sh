@@ -21,4 +21,4 @@ else
   echo "Curl Result: $curl_result"
 fi
 
- az aks stop --name burhanuddin-kuber --resource-group nodejs-rg
+# az aks stop --name burhanuddin-kuber --resource-group nodejs-rg
