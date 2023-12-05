@@ -24,8 +24,15 @@ steps:
   inputs:
     azureSubscription: 'kubernetes-sp'
     scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
+    scriptLocation: 'scriptPath'
+    scriptPath: './script2.sh'
+
+#- task: AzureCLI@2
+#  inputs:
+#    azureSubscription: 'kubernetes-sp'
+#    scriptType: 'bash'
+#    scriptLocation: 'inlineScript'
+#    inlineScript: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
 
 - task: Kubernetes@1
   inputs:
