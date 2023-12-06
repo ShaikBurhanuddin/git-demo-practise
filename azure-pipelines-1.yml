@@ -2,6 +2,13 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+variables:
+  tag: '#{image_tag}#'
+  vmImageName: 'ubuntu-latest'
+  envName: 'poc-releases'
+  docker_image_name: API
+  imagePullSecret: 'mvnrepo.azurecr.io'
+  dockerRegistryServiceConnection: 'Azure Container Registry'
 
 trigger:
 - none
@@ -52,7 +59,7 @@ steps:
 # and this pipeline trigger from the source build
 # now deploy to the AKS cluster with service principal conection of kubernetes service and 
 # creating secrets cause pulling the image from ACR to kubernets service.ACR is private registry.
-# after deploy to the AKS clusetr, now i am start and stop the cluster with command, whatever i mentioned the commands in shellscript,so it will take from there. 
+# after deploy to the AKS clusetr, now i am start and stop the cluster with command, in shellscript whatever i mentioned the commands,so it will take from there. 
 # and i mentioned the service name, AKS credentials, External Ip of servcie name and health check 
 
 
