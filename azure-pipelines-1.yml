@@ -29,7 +29,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'my-portal-for-k8s'
+    azureSubscription: 'to-my-k8s-portal'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
@@ -52,7 +52,7 @@ steps:
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
-    azureSubscriptionEndpoint: 'my-portal-for-k8s'
+    azureSubscriptionEndpoint: 'to-my-k8s-portal'
     azureResourceGroup: 'nodejs-rg'
     kubernetesCluster: 'burhanuddin-kuber'
     namespace: 'default'
@@ -61,13 +61,13 @@ steps:
     configuration: 'deployment/deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-    azureSubscriptionEndpointForSecrets: 'my-portal-for-k8s'
+    azureSubscriptionEndpointForSecrets: 'to-my-k8s-portal'
     azureContainerRegistry: 'mvnrepo.azurecr.io'
     secretName: 'burhanuddin-acr-secret'
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'my-portal-for-k8s'
+    azureSubscription: 'to-my-k8s-portal'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script.sh'
