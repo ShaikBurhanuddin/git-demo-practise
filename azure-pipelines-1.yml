@@ -2,11 +2,12 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+
 variables:
   tag: '#{image_tag}#'
   vmImageName: 'ubuntu-latest'
-  envName: 'poc-releases'
-  docker_image_name: API
+  #envName: 'poc-releases'
+  #docker_image_name: API
   imagePullSecret: 'mvnrepo.azurecr.io'
   dockerRegistryServiceConnection: 'Azure Container Registry'
 
