@@ -16,13 +16,3 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-
-
-
-# let start build the docker image and push to ACR via ci pipeline 
-
-# what is trigger: Using triggers to run a pipeline automatically. Azure Pipelines supports many types of triggers. Based on your pipeline's type and my trigger pipeline is Master.
-
-# Pool: "pool" in a pipeline typically refers to a set or collection of resources that can be shared and utilized by different stages or tasks within a larger process or workflow. and now i am using the default azure pipeline and azure provides the default pool or if you want to run your hole resources in your own agent then u should create one agent pool
-# building the docker image,whatever you gave the instructions in dockerfile and it will be created. and assigning the tag value for your image 
-# push the docker image to ACR and then create one container registery, in container registry create one repo.
