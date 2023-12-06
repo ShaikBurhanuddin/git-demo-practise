@@ -3,6 +3,14 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  tag: '#{image_tag}#'
+  vmImageName: 'ubuntu-latest'
+# envName: 'poc-releases'
+# docker_image_name: API
+  imagePullSecret: 'mvnrepo.azurecr.io'
+  dockerRegistryServiceConnection: 'Azure Container Registry'
+
 trigger:
 - none
 
@@ -26,6 +34,21 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
 
+- task: replacetokens@5
+  inputs:
+    rootDirectory: 'deployment'
+    targetFiles: '**/deployment.yml'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
@@ -48,6 +71,11 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script.sh'
+
+
+
+
+
 
 # and this pipeline trigger from the source build
 # now deploy to the AKS cluster with service principal conection of kubernetes service and 
