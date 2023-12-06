@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#script1
 # Replace 'your-service-name' with the actual name of your LoadBalancer service
 SERVICE_NAME="nodejs-service"
 
@@ -23,7 +23,7 @@ fi
 
 # az aks stop --name mvn-spring --resource-group cicd-mvn
 
-
+#script2
 # Get the pod name
 POD_NAME=$(kubectl get pods -l app=nodejs-app -o jsonpath='{.items[0].metadata.name}')
 
