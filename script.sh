@@ -13,12 +13,17 @@ if [ -z "$EXTERNAL_IP" ]; then
   echo "External IP not available yet. Please wait for the LoadBalancer to provision an external IP."
 else
   echo "External IP Address: $EXTERNAL_IP"
-  
-  # Use curl to make a request to the service using the external IP
-  curl_result=$(curl -sS "http://$EXTERNAL_IP:3001")
-  
-  # Print the result of the curl command
-  echo "Curl Result: $curl_result"
+
+  # Use curl to make a request to the health check endpoint (replace /health with your actual health check endpoint)
+  health_check_url="http://$EXTERNAL_IP:3001/health"
+  curl_result=$(curl -sS "$health_check_url")
+
+  # Check if the health check was successful (you may need to adjust the condition based on your application's response)
+  if [ "$curl_result" == "OK" ]; then
+    echo "Health Check Passed. Application is healthy."
+  else
+    echo "Health Check Failed. Application may be unhealthy."
+  fi
 fi
 
 # az aks stop --name burhanuddin-kuber --resource-group nodejs-rg
