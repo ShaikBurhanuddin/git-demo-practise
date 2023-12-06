@@ -49,6 +49,12 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './script.sh'
 
+# and this pipeline trigger from the source build
+# now deploy to the AKS cluster with service principal conection of kubernetes service and 
+# creating secrets cause pulling the image from ACR to kubernets service.ACR is private registry.
+# after deploy to the AKS clusetr, now i am start and stop the cluster with command, whatever i mentioned the commands in shellscript,so it will take from there. 
+# and i mentioned the service name, AKS credentials, External Ip of servcie name and health check 
+
 
 
 #- task: AzureCLI@2

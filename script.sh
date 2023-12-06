@@ -14,6 +14,12 @@ if [ -z "$EXTERNAL_IP" ]; then
 else
   echo "External IP Address: $EXTERNAL_IP"
 
+  # Use curl to make a request to the service using the external IP
+  curl_result=$(curl -sS "http://$EXTERNAL_IP:3001")
+ 
+  # Print the result of the curl command
+  echo "Curl Result:  $curl_result"
+  
   # Use curl to make a request to the health check endpoint (replace /health with your actual health check endpoint)
   health_check_url="http://$EXTERNAL_IP:3001/health"
   curl_result=$(curl -sS "$health_check_url")
@@ -26,4 +32,4 @@ else
   fi
 fi
 
-# az aks stop --name burhanuddin-kuber --resource-group nodejs-rg
+az aks stop --name burhanuddin-kuber --resource-group nodejs-rg
