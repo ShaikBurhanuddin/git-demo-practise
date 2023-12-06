@@ -16,3 +16,4 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    tag: $(Build.BuildId)
