@@ -29,3 +29,4 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
 else
     echo "AKS cluster is already running."
 fi
+
