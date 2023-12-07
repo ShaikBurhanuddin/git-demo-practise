@@ -20,11 +20,14 @@ else
   # Print the result of the curl command
   echo "Curl Result: $curl_result"
 fi
-
 # az aks stop --name mvn-spring --resource-group cicd-mvn
+
+
+
 
 #script2
 # Get the pod name
+
 POD_NAME=$(kubectl get pods -l app=nodejs-app -o jsonpath='{.items[0].metadata.name}')
 
 if [ -z "$POD_NAME" ]; then
@@ -34,9 +37,8 @@ fi
 
 echo "Pod name: $POD_NAME"
 
-# Execute a Bash command inside the pod to get LoadBalancer internal IP address
+# Get LoadBalancer internal IP directly
 LB_INTERNAL_IP=$(kubectl get svc nodejs-service -o=jsonpath='{.spec.clusterIP}')
-#LB_INTERNAL_IP=$(kubectl exec -it $POD_NAME -- bash -c "echo \$(kubectl get svc nodejs-service -o=jsonpath='{.spec.clusterIP}')")
 
 if [ -z "$LB_INTERNAL_IP" ]; then
     echo "Error: Unable to get LoadBalancer internal IP address."
@@ -44,13 +46,6 @@ if [ -z "$LB_INTERNAL_IP" ]; then
 fi
 
 echo "LoadBalancer internal IP: $LB_INTERNAL_IP"
-#kubectl exec -it "$POD_NAME" bash
 
-# Use the LoadBalancer internal IP for a curl command
-curl_command="curl http://$LB_INTERNAL_IP:3001"
-#curl http://$LB_INTERNAL_IP:3001
-
-echo "Execute curl command: $curl_command"
-#$curl_command
-# Execute a Bash shell inside the pod
-kubectl exec -it "$POD_NAME" -- bash -c "$curl_command"
+# Execute the curl command directly inside the pod
+kubectl exec -it "$POD_NAME" -- bash -c "curl http://$LB_INTERNAL_IP:3001"
