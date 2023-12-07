@@ -45,4 +45,4 @@ fi
 echo "LoadBalancer internal IP: $LB_INTERNAL_IP"
 
 # Execute the curl command directly inside the pod
-kubectl exec -it "$POD_NAME" -- bin -c "curl http://$LB_INTERNAL_IP:3001"
+kubectl exec -it "$POD_NAME" -- bash -c "curl http://$LB_INTERNAL_IP:3001"
