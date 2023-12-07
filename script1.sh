@@ -5,12 +5,26 @@ AKS_CLUSTER_NAME="mvn-spring"
 RESOURCE_GROUP="cicd-mvn"
 
 # Check if the AKS cluster is already running
-CLUSTER_STATUS=$(az aks show --name mvn-spring --resource-group cicd-mvn --query 'powerState.code' -o tsv)
+CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
 
 if [ "$CLUSTER_STATUS" == "Stopped" ]; then
     # Start the AKS cluster
     echo "Starting AKS cluster..."
-    az aks start --name mvn-spring --resource-group cicd-mvn
+    az aks start --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
+
+    # Wait for the cluster to be in a ready state
+    echo "Waiting for the AKS cluster to be ready..."
+    while true; do
+        CLUSTER_HEALTH=$(kubectl get componentstatuses --no-headers | awk '{print $1,$2}' | grep -v -E "controller-manager|scheduler" | awk '$2=="Healthy"{print $2}')
+
+        if [ "$CLUSTER_HEALTH" == "Healthy" ]; then
+            echo "AKS cluster is now running and healthy."
+            break
+        fi
+
+        echo "Waiting for the AKS cluster to be healthy..."
+        sleep 10
+    done
 else
     echo "AKS cluster is already running."
 fi
