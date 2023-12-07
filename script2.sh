@@ -22,9 +22,6 @@ else
 fi
 # az aks stop --name mvn-spring --resource-group cicd-mvn
 
-
-
-
 #script2
 # Get the pod name
 
