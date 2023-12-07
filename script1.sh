@@ -15,6 +15,9 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
     # Wait for the cluster to be in a ready state
     echo "Waiting for the AKS cluster to be ready..."
 
+    # Add debugging information
+    set -x
+
     while true; do
         CLUSTER_HEALTH=$(kubectl get componentstatuses --no-headers | awk '$2=="Healthy"{print $2}')
 
@@ -26,7 +29,9 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
         echo "Waiting for the AKS cluster to be healthy..."
         sleep 10
     done
+
+    # Stop debugging information
+    set +x
 else
     echo "AKS cluster is already running."
 fi
-
