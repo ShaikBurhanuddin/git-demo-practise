@@ -18,12 +18,26 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
 
     # Add debugging information
     set -x
+
+    # Set health check threshold
+    HEALTH_CHECK_THRESHOLD=3
+    consecutive_failures=0
+
     while true; do
         CLUSTER_HEALTH=$(kubectl get componentstatuses --no-headers | awk '$2=="Healthy"{print $2}')
 
         if [ "$CLUSTER_HEALTH" == "Healthy" ]; then
             echo "AKS cluster is now running and healthy."
             break
+        else
+            ((consecutive_failures++))
+            echo "AKS cluster is not healthy. Consecutive failures: $consecutive_failures"
+
+            if [ $consecutive_failures -ge $HEALTH_CHECK_THRESHOLD ]; then
+                echo "Health check failures exceeded the threshold. Taking corrective action..."
+                # Add your corrective action here, e.g., restarting pods or triggering an alert.
+                break
+            fi
         fi
 
         echo "Waiting for the AKS cluster to be healthy..."
