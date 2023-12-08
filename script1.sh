@@ -15,9 +15,9 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
     # Wait for the cluster to be in a ready state
     echo "Waiting for the AKS cluster to be ready..."
     az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER_NAME
+
     # Add debugging information
     set -x
-
     while true; do
         CLUSTER_HEALTH=$(kubectl get componentstatuses --no-headers | awk '$2=="Healthy"{print $2}')
 
