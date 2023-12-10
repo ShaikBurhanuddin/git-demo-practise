@@ -70,4 +70,3 @@ done
 
 # Stop debugging information
 set +x
-fi
