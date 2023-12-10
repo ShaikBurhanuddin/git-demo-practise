@@ -22,6 +22,11 @@ variables:
   imageTag: '$imageTag'
 
 steps:
+- script: |
+    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
+    echo "Build ID is $buildId"
+  displayName: 'Use Build ID'
+
 
 - task: AzureCLI@2
   inputs:
@@ -29,6 +34,7 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script1.sh'
+
 
 - task: DownloadBuildArtifacts@1
   displayName: 'Download Build ID Artifact'
