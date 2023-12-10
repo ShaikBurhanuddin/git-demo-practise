@@ -15,12 +15,12 @@ function start_cluster() {
     az aks start --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
 
     # Wait for the cluster to be in a ready state
-    wait_for_cluster_reawdy $START_TIMEOUT
+    wait_for_cluster_ready $START_TIMEOUT
 }
 
-function stop_cluster() {
-    echo "Stopping AKS cluster..."
-    az aks stop --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
+#function stop_cluster() {
+#    echo "Stopping AKS cluster..."
+#    az aks stop --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
 
     # Wait for the cluster to be stopped
     wait_for_cluster_stopped $STOP_TIMEOUT
