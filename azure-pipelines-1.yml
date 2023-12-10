@@ -22,10 +22,6 @@ variables:
   imageTag: '$imageTag'
 
 steps:
-- script: |
-    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
-    echo "Build ID is $buildId"
-  displayName: 'Use Build ID'
 
 - task: DownloadBuildArtifacts@1
   displayName: 'Download Build ID Artifact'
@@ -34,7 +30,10 @@ steps:
     downloadType: 'single'
     artifactName: 'BuildID'
     downloadPath: '$(System.ArtifactsDirectory)/BuildID'
-
+- script: |
+    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
+    echo "Build ID is $buildId"
+  displayName: 'Use Build ID'
 
 - task: replacetokens@5
   inputs:
