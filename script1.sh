@@ -23,8 +23,8 @@ function start_cluster() {
 #    az aks stop --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
 
     # Wait for the cluster to be stopped
-    wait_for_cluster_stopped $STOP_TIMEOUT
-}
+#    wait_for_cluster_stopped $STOP_TIMEOUT
+# }
 
 function wait_for_cluster_ready() {
     local timeout=$1
@@ -48,27 +48,27 @@ function wait_for_cluster_ready() {
     done
 }
 
-function wait_for_cluster_stopped() {
-    local timeout=$1
-    local start_time=$(date +%s)
+#function wait_for_cluster_stopped() {
+#    local timeout=$1
+#    local start_time=$(date +%s)
 
-    while true; do
-        CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
+#    while true; do
+#        CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
 
-        if [ "$CLUSTER_STATUS" == "Stopped" ]; then
-            echo "AKS cluster is now stopped."
-            break
-        fi
+#        if [ "$CLUSTER_STATUS" == "Stopped" ]; then
+#            echo "AKS cluster is now stopped."
+#            break
+#        fi
 
-        if [ $(( $(date +%s) - $start_time )) -ge $timeout ]; then
-            echo "Timed out waiting for the AKS cluster to be stopped."
-            exit 1
-        fi
+#       if [ $(( $(date +%s) - $start_time )) -ge $timeout ]; then
+#            echo "Timed out waiting for the AKS cluster to be stopped."
+#            exit 1
+#        fi
 
-        echo "Waiting for the AKS cluster to be stopped..."
-        sleep $HEALTH_CHECK_INTERVAL
-    done
-}
+#        echo "Waiting for the AKS cluster to be stopped..."
+#        sleep $HEALTH_CHECK_INTERVAL
+#    done
+#}
 
 # Check if the AKS cluster is already running
 CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
