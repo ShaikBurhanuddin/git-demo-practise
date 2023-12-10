@@ -19,8 +19,16 @@ steps:
 
 
 - task: Bash@3
+  displayName: 'Create Build ID File'
   inputs:
     targetType: 'inline'
     script: |
       echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildid.txt
-        displayName: 'Create Build ID File'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build ID Artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'BuildID'
+    publishLocation: 'Container'
