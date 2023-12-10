@@ -15,12 +15,12 @@ else
   echo "External IP Address: $EXTERNAL_IP"
   
   # Use curl to make a request to the service using the external IP
-  curl_result=$(curl -sS "http://$EXTERNAL_IP")
+  curl_result=$(curl -sS "http://$EXTERNAL_IP:80")
   
   # Print the result of the curl command
   echo "Curl Result: $curl_result"
 fi
-
+az aks stop --name mvn-spring --resource-group cicd-mvn
 
 #script2
 # Get the pod name
@@ -56,4 +56,3 @@ fi
 
 #echo "Curl command executed successfully."
 #cat output.txt
-# az aks stop --name mvn-spring --resource-group cicd-mvn
