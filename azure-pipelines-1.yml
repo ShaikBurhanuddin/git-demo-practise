@@ -30,6 +30,14 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './script1.sh'
 
+- task: DownloadBuildArtifacts@1
+  displayName: 'Download Build ID Artifact'
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'BuildID'
+    downloadPath: '''$(System.ArtifactsDirectory)/BuildID'''
+
 - task: replacetokens@5
   inputs:
     rootDirectory: 'deployment'
@@ -44,14 +52,6 @@ steps:
     enableRecursion: false
     useLegacyPattern: false
     enableTelemetry: true
-
-- task: DownloadBuildArtifacts@1
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'BuildID'
-    downloadPath: '$(System.ArtifactsDirectory)'
-
 
 
 - task: Kubernetes@1
@@ -76,20 +76,3 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
-
-
-
-#- task: AzureCLI@2
-#  inputs:
-#    azureSubscription: 'kubernetes-sp'
-#    scriptType: 'bash'
-#    scriptLocation: 'inlineScript'
-#    inlineScript: 'az aks start --name burhanuddin-kuber --resource-group nodejs-rg'
-
-#variables:
-#tag: '#{image_tag}#'
-#vmImage: ubuntu-latest
-#envName: 'poc-releases'
-#docker_image_name: API
-#imagePullSecret: 'mvnrepo.azurecr.io'
-#dockerRegistryServiceConnection: 'Azure Container Registry'
