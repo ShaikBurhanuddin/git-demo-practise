@@ -17,6 +17,12 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build ID Artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'BuildID'
+    publishLocation: 'Container'
 
 - task: Bash@3
   displayName: 'Create Build ID File'
@@ -24,11 +30,3 @@ steps:
     targetType: 'inline'
     script: |
       echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildid.txt
-
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Build ID Artifact'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'BuildID'
-    publishLocation: 'Container'
