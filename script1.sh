@@ -16,6 +16,8 @@ function start_cluster() {
 
     # Wait for the cluster to be in a ready state
     wait_for_cluster_ready $START_TIMEOUT
+    az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER_NAME
+
 }
 
 function wait_for_cluster_ready() {
