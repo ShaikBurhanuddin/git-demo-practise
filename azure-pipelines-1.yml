@@ -33,7 +33,8 @@ steps:
     buildType: 'current'
     downloadType: 'single'
     artifactName: 'BuildID'
-    downloadPath: '''$(System.ArtifactsDirectory)/BuildID'''
+    downloadPath: '$(System.ArtifactsDirectory)/BuildID'
+
 
 - task: replacetokens@5
   inputs:
