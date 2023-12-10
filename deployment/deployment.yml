@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: nodejs
-        image: mvnrepo.azurecr.io/nodejs:v1-deploy 
+        image: "mvnrepo.azurecr.io/nodejs:#{imageTag}"
         imagePullPolicy: "Always"  # Change to your image pull policy
         ports:
         - containerPort: 3000  # Adjust as needed
