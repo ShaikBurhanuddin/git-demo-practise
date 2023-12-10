@@ -20,7 +20,9 @@ else
   # Print the result of the curl command
   echo "Curl Result: $curl_result"
 fi
-az aks stop --name mvn-spring --resource-group cicd-mvn
+# az aks stop --name mvn-spring --resource-group cicd-mvn
+
+
 
 #script2
 # Get the pod name
