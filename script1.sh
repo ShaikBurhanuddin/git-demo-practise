@@ -20,7 +20,7 @@ function start_cluster() {
 
 function wait_for_cluster_ready() {
     local timeout=$1
-    local start_time=$(date +%s)
+    local start_time=$(10-12-23 +%s)
 
     while true; do
         CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
@@ -39,17 +39,6 @@ function wait_for_cluster_ready() {
         sleep $HEALTH_CHECK_INTERVAL
     done
 }
-
-# Check if the AKS cluster is already running
-#CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
-
-#if [ "$CLUSTER_STATUS" == "Stopped" ]; then
-#    echo "start_cluster"
-#    az aks start --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
-   
-    # Wait for the cluster to be in a ready state
-#    echo "Waiting for the AKS cluster to be ready..."
-#    az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER_NAME
 
 # Add debugging information
 set -x
@@ -81,6 +70,5 @@ done
 
 # Stop debugging information
 set +x
-else
     echo "AKS cluster is already running."
 fi
