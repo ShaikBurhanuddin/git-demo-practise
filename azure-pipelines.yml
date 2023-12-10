@@ -16,3 +16,11 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildid.txt
+        displayName: 'Create Build ID File'
