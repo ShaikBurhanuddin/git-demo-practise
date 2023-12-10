@@ -45,6 +45,15 @@ steps:
     useLegacyPattern: false
     enableTelemetry: true
 
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'BuildID'
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
