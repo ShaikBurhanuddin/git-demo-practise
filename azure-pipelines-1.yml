@@ -58,8 +58,8 @@ steps:
     enableRecursion: false
     useLegacyPattern: false
     enableTelemetry: true
-    tokens: |
-      $(IMAGETAG_ENV)
+    sourcePath: '$(Build.ArtifactStagingDirectory)/buildid.txt'
+    
 
 
 - task: AzureCLI@2
