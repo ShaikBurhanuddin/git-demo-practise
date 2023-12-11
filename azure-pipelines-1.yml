@@ -58,9 +58,11 @@ steps:
     scriptPath: './script1.sh'
 
 - script: |
+    ls -R $(System.ArtifactsDirectory)/BuildID/
     buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
     echo "Build ID is $buildId"
   displayName: 'Use Build ID'
+
 
 - task: Kubernetes@1
   inputs:
