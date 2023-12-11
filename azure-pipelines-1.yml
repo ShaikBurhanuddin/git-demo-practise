@@ -20,7 +20,6 @@ pool:
 
 variables:
   imageTag: '$imageTag'
-
 steps:
 - task: DownloadBuildArtifacts@1
   displayName: 'Download Build ID Artifact'
@@ -40,7 +39,7 @@ steps:
     script: |
       export imagetag=$(cat /home/vsts/work/1/a/BuildID/BuildID/buildid.txt)
       echo $imagetag
-      echo "##vso[task.setvariable variable=imageTag]"
+      echo "##vso[task.setvariable variable=imageTag]$imageTag"
 
 - task: replacetokens@5
   inputs:
@@ -56,6 +55,9 @@ steps:
     enableRecursion: false
     useLegacyPattern: false
     enableTelemetry: true
+    tokens: |
+      $(imageTag)
+
 
 - task: AzureCLI@2
   inputs:
