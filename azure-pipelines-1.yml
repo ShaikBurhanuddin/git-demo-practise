@@ -23,14 +23,6 @@ variables:
 
 steps:
 
-- task: DownloadBuildArtifacts@0
-  displayName: 'Download Build ID Artifact'
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'BuildID'
-    downloadPath: '$(System.ArtifactsDirectory)/BuildID'
-
 - script: |
     buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
     echo "Build ID is $buildId"
