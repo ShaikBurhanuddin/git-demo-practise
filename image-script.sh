@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#
 # Get the current image tag from the file
 imagetag=$(cat /home/vsts/work/1/a/BuildID/BuildID/buildid.txt)
 
