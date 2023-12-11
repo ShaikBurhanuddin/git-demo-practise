@@ -22,10 +22,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: 
-      'echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildid.txt'
-       echo "##vso[task.setvariable variable=imageTag]$now"
-    
-
+      echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildid.txt
+      echo "##vso[task.setvariable variable=imageTag]$now"
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build ID Artifact'
