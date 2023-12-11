@@ -19,7 +19,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  imageTag: '$imageTag'
+  imageTag: $(Build.BuildId)
 
 steps:
 - task: DownloadBuildArtifacts@1
