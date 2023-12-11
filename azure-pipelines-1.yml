@@ -38,6 +38,7 @@ steps:
     targetType: 'inline'
     script: |
       export imagetag=$(cat /home/vsts/work/1/a/BuildID/BuildID/buildid.txt)
+      echo imagetag
       echo "##vso[task.setvariable variable=imageTag]$imageTag"
 
 
