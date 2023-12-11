@@ -35,6 +35,7 @@ steps:
     cleanDestinationFolder: true
 
 - task: Bash@3
+  displayName: 'Image Tag'
   inputs:
     targetType: 'inline'
     script: |
