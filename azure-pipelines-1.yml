@@ -35,7 +35,7 @@ steps:
 
 - task: Bash@3
   inputs:
-    filePath: 'image-script.sh'
+    filePath: '$(System.DefaultWorkingDirectory)/image-script.sh'
 
 
 - task: AzureCLI@2
