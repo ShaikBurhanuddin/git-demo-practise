@@ -38,9 +38,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      buildId=$(cat $(System.ArtifactsDirectory)/BuildID/BuildID/buildid.txt)
-      echo "Build ID is $buildId"
-      echo "##vso[task.setvariable variable=imageTag]$imageTag"
+      export imagetag=$(cat /home/vsts/work/1/a/BuildID/BuildID/buildid.txt)
+      echo $imagetag
 
 - task: replacetokens@5
   inputs:
