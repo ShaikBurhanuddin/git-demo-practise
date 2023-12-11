@@ -28,11 +28,11 @@ steps:
     buildType: 'specific'
     project: 'cf7f8411-dfc9-4a44-bb3d-fdd7b65dd258'
     pipeline: '14'
-    buildVersionToDownload: 'specific'
-    buildId: '$(Build.BuildId)'
-    downloadType: 'single'
-    artifactName: 'BuildID'
+    buildVersionToDownload: 'latest'
+    allowPartiallySucceededBuilds: true
+    downloadType: 'specific'
     downloadPath: '$(System.ArtifactsDirectory)/BuildID'
+    cleanDestinationFolder: true
 
 
 - script: |
