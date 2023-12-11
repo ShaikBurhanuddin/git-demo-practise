@@ -57,6 +57,10 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './script1.sh'
 
+- script: |
+    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
+    echo "Build ID is $buildId"
+  displayName: 'Use Build ID'
 
 - task: Kubernetes@1
   inputs:
@@ -80,8 +84,3 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
-
-- script: |
-    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
-    echo "Build ID is $buildId"
-  displayName: 'Use Build ID'
