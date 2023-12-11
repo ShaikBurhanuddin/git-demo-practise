@@ -7,6 +7,6 @@ imagetag=$(cat /home/vsts/work/1/a/BuildID/BuildID/buildid.txt)
 yaml_file="/home/vsts/work/1/s/deployment/deployment.yml"
 
 # Replace the image tag in the YAML file
-sed -i "s|image: mvnrepo.azurecr.io/nodejs:#{imageTag}#\|image: mvnrepo.azurecr.io/nodejs:${imagetag}|g" $yaml_file
+sed -i "s|image: mvnrepo.azurecr.io/nodejs:${imageTag} |image: mvnrepo.azurecr.io/nodejs:${imagetag}|g"  $yaml_file
 
 echo "Image tag changed to ${imagetag}"
