@@ -35,13 +35,12 @@ steps:
     cleanDestinationFolder: true
 
 - task: Bash@3
-  displayName: 'Image Tag'
   inputs:
     targetType: 'inline'
     script: |
       export imagetag=$(cat /home/vsts/work/1/a/BuildID/BuildID/buildid.txt)
       echo $imagetag
-      echo "##vso[task.setvariable variable=imageTag]$imageTag"
+      echo "##vso[task.setvariable variable=imageTag]"
 
 - task: replacetokens@5
   inputs:
