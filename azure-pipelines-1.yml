@@ -36,22 +36,6 @@ steps:
 - task: Bash@3
   inputs:
     filePath: 'image-script.sh'
-    
-
-- task: replacetokens@5
-  inputs:
-    rootDirectory: 'deployment'
-    targetFiles: '**/deployment.yml'
-    encoding: 'auto'
-    tokenPattern: 'default'
-    writeBOM: true
-    actionOnMissing: 'warn'
-    keepToken: false
-    actionOnNoFiles: 'continue'
-    enableTransforms: false
-    enableRecursion: false
-    useLegacyPattern: false
-    enableTelemetry: true
 
 
 
