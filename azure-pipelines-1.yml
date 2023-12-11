@@ -38,7 +38,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
+      buildId=$(cat $(System.ArtifactsDirectory)/BuildID/BuildID/buildid.txt)
       echo "Build ID is $buildId"
 
 - task: replacetokens@5
