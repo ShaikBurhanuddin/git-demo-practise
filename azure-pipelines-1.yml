@@ -55,7 +55,7 @@ steps:
     enableRecursion: false
     useLegacyPattern: false
     enableTelemetry: true
-    sourcePath: '$(System.ArtifactsDirectory)/buildid.txt'
+
 
 
 - task: AzureCLI@2
