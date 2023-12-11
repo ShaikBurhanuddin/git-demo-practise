@@ -38,9 +38,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-      imagetag=$(cat /home/vsts/work/1/a/buildid.txt)
-      docker pull mvnrepo.azurecr.io/mvn-spring:$imagetag
+      buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
+      echo "Build ID is $buildId"
 
 - task: replacetokens@5
   inputs:
