@@ -19,7 +19,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  imageTag: '$(Build.BuildId)'
+  imageTag: '$imageTag'
 
 steps:
 - task: DownloadBuildArtifacts@1
@@ -40,6 +40,7 @@ steps:
     script: |
       buildId=$(cat $(System.ArtifactsDirectory)/BuildID/BuildID/buildid.txt)
       echo "Build ID is $buildId"
+      echo "##vso[task.setvariable variable=imageTag]$imageTag"
 
 - task: replacetokens@5
   inputs:
