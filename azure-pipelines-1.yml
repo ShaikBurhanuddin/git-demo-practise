@@ -35,11 +35,6 @@ steps:
     cleanDestinationFolder: true
 
 
-- script: |
-    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
-    echo "Build ID is $buildId"
-  displayName: 'Use Build ID'
-
 - task: replacetokens@5
   inputs:
     rootDirectory: 'deployment'
@@ -86,3 +81,7 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
 
+- script: |
+    buildId=$(cat $(System.ArtifactsDirectory)/BuildID/buildid.txt)
+    echo "Build ID is $buildId"
+  displayName: 'Use Build ID'
