@@ -16,7 +16,7 @@ steps:
     repository: 'nodejs'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: '$(imageTag)'
+
 
 - task: Bash@3
   displayName: 'Create Build ID File'
