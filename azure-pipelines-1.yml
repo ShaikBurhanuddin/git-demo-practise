@@ -38,7 +38,6 @@ steps:
     filePath: 'image-script.sh'
 
 
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'to-my-k8s-portal'
