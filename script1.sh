@@ -38,7 +38,7 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
                 echo "Health check failures exceeded the threshold. Taking corrective action..."
                 # Add your corrective action here, e.g., restarting pods or triggering an alert.
                 # Restarting all pods in a specific namespace
-                #kubectl delete pods --all -n default
+                kubectl delete pods --all -n default
                 break
             fi
         fi
