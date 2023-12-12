@@ -14,41 +14,23 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
 
     # Wait for the cluster to be in a ready state
     echo "Waiting for the AKS cluster to be ready..."
-    az aks get-credentials --resource-group cicd-mvn --name mvn-spring
+    az aks wait --resource-group cicd-mvn --name mvn-spring --updated --interval 30 --timeout 1800
 
-    # Add debugging information
-    set -x
+    # Check the health status and heartbeat of the AKS cluster
+    HEALTH_STATUS=$(az aks show --name mvn-spring --resource-group cicd-mvn --query 'agentPoolProfiles[0].provisioningState' -o tsv)
+    
+    if [ "$HEALTH_STATUS" == "Succeeded" ]; then
+        echo "AKS cluster is running and healthy."
+        
+        # Connect to the AKS cluster control manager and scheduler
+        echo "Connecting to AKS cluster..."
+        az aks get-credentials --resource-group cicd-mvn --name mvn-spring
 
-    # Set health check threshold
-    HEALTH_CHECK_THRESHOLD=3
-    consecutive_failures=0
-    HEARTBEAT_INTERVAL=10  # Set the interval for heartbeat check in seconds
-
-    while true; do
-        CLUSTER_HEALTH=$(kubectl get componentstatuses --no-headers | awk '$2=="Healthy"{print $2}')
-
-        if [ "$CLUSTER_HEALTH" == "Healthy" ]; then
-            echo "AKS cluster is now running and healthy."
-            break
-        else
-            ((consecutive_failures++))
-            echo "AKS cluster is not healthy. Consecutive failures: $consecutive_failures"
-
-            if [ $consecutive_failures -ge $HEALTH_CHECK_THRESHOLD ]; then
-                echo "Health check failures exceeded the threshold. Taking corrective action..."
-                # Add your corrective action here, e.g., restarting pods or triggering an alert.
-                # Restarting all pods in a specific namespace
-                kubectl delete pods --all -n default
-                break
-            fi
-        fi
-
-        echo "Waiting for the AKS cluster to be healthy..."
-        sleep $HEARTBEAT_INTERVAL
-    done
-
-    # Stop debugging information
-    set +x
+        # Add your commands to interact with the AKS cluster as needed
+        kubectl get nodes
+    else
+        echo "AKS cluster health check failed. Please check the cluster status manually."
+    fi
 else
     echo "AKS cluster is already running."
 fi
