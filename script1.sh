@@ -5,16 +5,16 @@ AKS_CLUSTER_NAME="mvn-spring"
 RESOURCE_GROUP="cicd-mvn"
 
 # Check if the AKS cluster is already running
-CLUSTER_STATUS=$(az aks show --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP --query 'powerState.code' -o tsv)
+CLUSTER_STATUS=$(az aks show --name mvn-spring --resource-group cicd-mvn --query 'powerState.code' -o tsv)
 
 if [ "$CLUSTER_STATUS" == "Stopped" ]; then
     # Start the AKS cluster
     echo "Starting AKS cluster..."
-    az aks start --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP
+    az aks start --name mvn-spring --resource-group cicd-mvn 
 
     # Wait for the cluster to be in a ready state
     echo "Waiting for the AKS cluster to be ready..."
-    az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER_NAME
+    az aks get-credentials --resource-group cicd-mvn --name mvn-spring
 
     # Add debugging information
     set -x
