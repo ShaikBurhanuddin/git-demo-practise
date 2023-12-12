@@ -28,6 +28,7 @@ if [ "$CLUSTER_STATUS" == "Stopped" ]; then
 
         # Add your commands to interact with the AKS cluster as needed
         kubectl get nodes
+        kubectl get componentstatuses --no-headers
     else
         echo "AKS cluster health check failed. Please check the cluster status manually."
     fi
