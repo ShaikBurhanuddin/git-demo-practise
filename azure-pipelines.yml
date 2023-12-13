@@ -7,6 +7,7 @@ pool:
 variables:
   imageName: 'nodejs'
   imageTag: 'latest'
+  imageRepository: 'nodejs'
   acrName: 'mvnrepo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
 
@@ -20,9 +21,8 @@ stages:
       inputs:
         repository: 'nodejs'
         command: 'build'
-        Dockerfile: '$(dockerfilePath)'
-        buildContext: '$(Build.SourcesDirectory)'
-        tags: 'latest'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(imageTag)'
 
     - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
@@ -33,14 +33,13 @@ stages:
       inputs:
         containerRegistry: 'to-mvn-repo'
         command: 'login'
-      #customCommand: 'login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ mvnrepo.azurecr.io'
 
     - task: Docker@2
       inputs:
         containerRegistry: 'to-mvn-repo'
         repository: 'nodejs'
         command: 'push'
-        tags: 'latest'
+        tags: '$(imageTag)'
 
 
     - task: PublishBuildArtifacts@1
