@@ -28,22 +28,12 @@ stages:
 
     - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
-        docker save -o /home/vsts/work/1/a/nodejs_514.tar nodejs:$(imageTag)
+
+        docker tag nodejs:$(imageTag) mvnrepo.azurecr.io/nodejs:$(imageTag)
+        docker save -o /home/vsts/work/1/a/nodejs.tar mvnrepo.azurecr.io/nodejs:$(imageTag)
+        az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
+        docker push mvnrepo.azurecr.io/nodejs:$(imageTag)
       displayName: 'Save Docker Image to Tarball'
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'to-mvn-repo'
-        command: 'login'
-
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'to-mvn-repo'
-        repository: 'nodejs'
-        command: 'push'
-        tags: '$(imageTag)'
-
 
     - task: PublishBuildArtifacts@1
       inputs:
