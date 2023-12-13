@@ -25,7 +25,8 @@ stages:
 
     - script:
         # Replace <image_name>:<tag> with your actual Docker image details
-        docker save -o $(Build.ArtifactStagingDirectory)/burhanuddin-node-image burhanuddin-node-image:v1
+        docker login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ  mvnrepo.azurecr.io
+        docker save -o /home/vsts/work/1/a/burhanuddin-node-image.tar burhanuddin-node-image:v1
       displayName: 'Save Docker Image to Tarball'
 
     - task: Docker@2
