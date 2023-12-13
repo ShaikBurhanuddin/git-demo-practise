@@ -12,8 +12,9 @@ resources:
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  imageTag: '$imageTag'
+#variables:
+#  imageTag: '$imageTag'
+
 steps:
 - task: DownloadBuildArtifacts@1
   displayName: 'Download Build ID Artifact'
@@ -32,7 +33,11 @@ steps:
     targetType: 'inline'
     script: |
       az acr login -n mvnrepo.azurecr.io -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-      docker load -i $(Build.ArtifactStagingDirectory)/nodejs.tar'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'docker load -i $(Build.ArtifactStagingDirectory)/nodejs.tar'
 
 
 - task: AzureCLI@2
