@@ -26,10 +26,13 @@ stages:
         addPipelineData: false
         addBaseImageData: false
 
-    - script: 
-        docker tag nodejs:$(imageTag) mvnrepo.azurecr.io/nodejs:$(imageTag)
-        az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-        docker push mvnrepo.azurecr.io/nodejs:$(imageTag)
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker tag nodejs:$(imageTag) mvnrepo.azurecr.io/nodejs:$(imageTag)
+          az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
+          docker push mvnrepo.azurecr.io/nodejs:$(imageTag)
       displayName: 'Docker Image tag and push'
 
     - script:
