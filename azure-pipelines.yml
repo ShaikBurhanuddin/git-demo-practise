@@ -6,7 +6,7 @@ pool:
 
 variables:
   imageName: 'nodejs'
-  imageTag: 'latest'
+  #imageTag: 'latest'
   imageRepository: 'nodejs'
   acrName: 'mvnrepo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
@@ -17,16 +17,17 @@ stages:
   - job: BuildAndPushJob
     displayName: 'Build and Push Docker Image'
     steps:
+
     - task: Docker@2
       inputs:
         repository: 'nodejs'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        tags: '$(imageTag)'
+        #tags: '$(imageTag)'
 
     - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
-        docker save -o /home/vsts/work/1/a/nodejs.tar nodejs:$(imageTag)
+        docker save -o /home/vsts/work/1/a/nodejs.tar nodejs
       displayName: 'Save Docker Image to Tarball'
 
     - task: Docker@2
@@ -39,7 +40,7 @@ stages:
         containerRegistry: 'to-mvn-repo'
         repository: 'nodejs'
         command: 'push'
-        tags: '$(imageTag)'
+        #tags: '$(imageTag)'
 
 
     - task: PublishBuildArtifacts@1
