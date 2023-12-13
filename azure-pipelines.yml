@@ -6,7 +6,7 @@ pool:
 
 variables:
   imageName: 'nodejs'
-  imageTag: 'v1'
+  imageTag: ''
   acrName: 'mvnrepo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
 
