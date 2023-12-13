@@ -18,14 +18,15 @@ stages:
     steps:
     - task: Docker@2
       inputs:
+        repository: 'nodejs'
         command: 'build'
         Dockerfile: '$(dockerfilePath)'
         buildContext: '$(Build.SourcesDirectory)'
-        tags: 'burhanuddin-node-image:$(imageTag)'
+        tags: '$(imageTag)'
 
-    - script: |
+    - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
-        docker login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ  mvnrepo.azurecr.io
+        #docker login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ  mvnrepo.azurecr.io
         docker save -o /home/vsts/work/1/a/burhanuddin-node-image.tar burhanuddin-node-image:v1
       displayName: 'Save Docker Image to Tarball'
 
