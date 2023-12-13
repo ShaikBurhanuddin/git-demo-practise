@@ -6,7 +6,7 @@ pool:
 
 variables:
   imageName: 'nodejs'
-  imageTag: '514'
+  imageTag: 'v1-test'
   imageRepository: 'mvnrepo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
 
@@ -30,14 +30,11 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          docker tag nodejs:$(imageTag) mvnrepo.azurecr.io/nodejs:$(imageTag)
-          az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-          docker push mvnrepo.azurecr.io/nodejs:$(imageTag)
-      displayName: 'Docker Image tag and push'
-
-    - script:
-        docker save -o /home/vsts/work/1/a/nodejs.tar mvnrepo.azurecr.io/nodejs:$(imageTag)
-      displayName: 'Docker Image saving to tar file'
+          docker tag nodejs:$(imageName) mvnrepo.azurecr.io/nodejs:$(imageName)
+          az acr login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ mvnrepo.azurecr.io
+          docker push mvnrepo.azurecr.io/nodejs:$(imageName)
+          docker save -o /home/vsts/work/1/a/nodejs.tar mvnrepo.azurecr.io/nodejs:$(imageTag)
+      displayName: 'Docker Imagetag and push'
 
     - task: PublishBuildArtifacts@1
       inputs:
