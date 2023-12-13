@@ -23,6 +23,7 @@ stages:
         repository: 'nodejs'
         command: 'build'
         Dockerfile: '**/Dockerfile'
+        tags: 
         #tags: '$(imageTag)'
 
     - script: 
@@ -35,11 +36,13 @@ stages:
         containerRegistry: 'to-mvn-repo'
         command: 'login'
 
+
     - task: Docker@2
       inputs:
         containerRegistry: 'to-mvn-repo'
         repository: 'nodejs'
         command: 'push'
+        tags: 
         #tags: '$(imageTag)'
 
 
