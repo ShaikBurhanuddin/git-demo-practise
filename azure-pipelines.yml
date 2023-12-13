@@ -1,33 +1,48 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'to-mvn-repo'
-    repository: 'nodejs'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+variables:
+  imageName: 'burhanuddin-node-image'
+  imageTag: 'v1'
+  acrName: 'mvnrepo.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
 
+stages:
+- stage: BuildAndPush
+  jobs:
+  - job: BuildAndPushJob
+    displayName: 'Build and Push Docker Image'
+    steps:
+    - task: Docker@2
+      inputs:
+        command: 'build'
+        Dockerfile: '$(dockerfilePath)'
+        buildContext: '$(Build.SourcesDirectory)'
+        tags: '$burhanuddin-node-image:$v1'
 
-- task: Bash@3
-  displayName: 'Create Build ID File'
-  inputs:
-    targetType: 'inline'
-    script: 
-      echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildid.txt
+    - task: Docker@2
+      inputs:
+        command: 'save'
+        savePath: '$(Build.ArtifactStagingDirectory)/$burhanuddin-node-image.tar'
+        images: '$burhanuddin-node-image:$v1'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Build ID Artifact'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'BuildID'
-    publishLocation: 'Container'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'to-mvn-repo'
+        command: 'login'
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'to-mvn-repo'
+        repository: 'nodejs'
+        command: 'push'
+        tags: 'v1'
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        artifact: 'docker-image'
+        publishLocation: 'pipeline'
