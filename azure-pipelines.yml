@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  imageName: 'burhanuddin-node-image'
+  imageName: 'nodejs'
   imageTag: 'v1'
   acrName: 'mvnrepo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
@@ -26,7 +26,7 @@ stages:
 
     - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
-        docker save -o /home/vsts/work/1/a/burhanuddin-node-image.tar nodejs:$(imageTag)
+        docker save -o /home/vsts/work/1/a/nodejs.tar nodejs:$(imageTag)
       displayName: 'Save Docker Image to Tarball'
 
     - task: Docker@2
