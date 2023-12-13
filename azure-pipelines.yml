@@ -33,6 +33,7 @@ stages:
       inputs:
         containerRegistry: 'to-mvn-repo'
         command: 'login'
+        customCommand: 'login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ mvnrepo.azurecr.io'
 
     - task: Docker@2
       inputs:
