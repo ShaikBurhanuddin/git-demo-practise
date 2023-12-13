@@ -23,8 +23,8 @@ stages:
         repository: 'nodejs'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        tags: 
-        #tags: '$(imageTag)'
+        tags: '$(imageTag)'
+ 
 
     - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
@@ -42,8 +42,8 @@ stages:
         containerRegistry: 'to-mvn-repo'
         repository: 'nodejs'
         command: 'push'
-        tags: 
-        #tags: '$(imageTag)'
+        tags: '$(imageTag)'
+
 
 
     - task: PublishBuildArtifacts@1
