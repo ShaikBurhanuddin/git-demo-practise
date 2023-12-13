@@ -22,25 +22,25 @@ stages:
         command: 'build'
         Dockerfile: '$(dockerfilePath)'
         buildContext: '$(Build.SourcesDirectory)'
-        tags: '$(imageTag)'
+        tags: 'latest'
 
     - script: 
         # Replace <image_name>:<tag> with your actual Docker image details
-        docker save -o /home/vsts/work/1/a/nodejs.tar nodejs:$(imageTag)
+        docker save -o /home/vsts/work/1/a/nodejs.tar nodejs:$(latest)
       displayName: 'Save Docker Image to Tarball'
 
     - task: Docker@2
       inputs:
         containerRegistry: 'to-mvn-repo'
         command: 'login'
-        customCommand: 'login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ mvnrepo.azurecr.io'
+      #customCommand: 'login -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ mvnrepo.azurecr.io'
 
     - task: Docker@2
       inputs:
         containerRegistry: 'to-mvn-repo'
         repository: 'nodejs'
         command: 'push'
-        tags: '$(imageTag)'
+        tags: 'latest'
 
 
     - task: PublishBuildArtifacts@1
