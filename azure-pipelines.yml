@@ -23,11 +23,10 @@ stages:
         buildContext: '$(Build.SourcesDirectory)'
         tags: 'burhanuddin-node-image:$(imageTag)'
 
-    - task: Docker@2
-      inputs:
-        command: 'save'
-        savePath: '$(Build.ArtifactStagingDirectory)/burhanuddin-node-image.tar'
-        include: 'burhanuddin-node-image:$(imageTag)'
+    - script:
+        # Replace <image_name>:<tag> with your actual Docker image details
+        docker save -o $(Build.ArtifactStagingDirectory)/burhanuddin-node-image burhanuddin-node-image:v1
+      displayName: 'Save Docker Image to Tarball'
 
     - task: Docker@2
       inputs:
@@ -41,8 +40,9 @@ stages:
         command: 'push'
         tags: '$(imageTag)'
 
-    - task: PublishPipelineArtifact@1
+
+    - task: PublishBuildArtifacts@1
       inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)'
-        artifact: 'docker-image'
-        publishLocation: 'pipeline'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'docker-image'
+        publishLocation: 'Container'
