@@ -1,9 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-
 trigger:
 - none
 
@@ -30,7 +24,7 @@ steps:
     buildVersionToDownload: 'latest'
     allowPartiallySucceededBuilds: true
     downloadType: 'specific'
-    downloadPath: '$(System.ArtifactsDirectory)/BuildID'
+    downloadPath: '$(System.ArtifactsDirectory)/docker-image'
     cleanDestinationFolder: true
 
 - task: Bash@3
