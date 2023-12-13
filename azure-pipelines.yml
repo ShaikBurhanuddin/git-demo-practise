@@ -21,13 +21,13 @@ stages:
         command: 'build'
         Dockerfile: '$(dockerfilePath)'
         buildContext: '$(Build.SourcesDirectory)'
-        tags: '$burhanuddin-node-image:$v1'
+        tags: 'burhanuddin-node-image:$(imageTag)'
 
     - task: Docker@2
       inputs:
         command: 'save'
-        savePath: '$(Build.ArtifactStagingDirectory)/$burhanuddin-node-image.tar'
-        images: '$burhanuddin-node-image:$v1'
+        savePath: '$(Build.ArtifactStagingDirectory)/burhanuddin-node-image.tar'
+        include: 'burhanuddin-node-image:$(imageTag)'
 
     - task: Docker@2
       inputs:
@@ -39,7 +39,7 @@ stages:
         containerRegistry: 'to-mvn-repo'
         repository: 'nodejs'
         command: 'push'
-        tags: 'v1'
+        tags: '$(imageTag)'
 
     - task: PublishPipelineArtifact@1
       inputs:
