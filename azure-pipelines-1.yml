@@ -38,7 +38,7 @@ steps:
     targetType: 'inline'
     script: |
       # Get the current image tag from the file
-      IMAGE_TAG=$(docker images --format "{{.Tag}}")
+      IMAGE_TAG=$(docker images mvnrepo.azurecr.io/nodejs --format "{{.Tag}}")
       echo "$IMAGE_TAG"
       # Specify the path to your Kubernetes deployment YAML file
       YAML_FILE="/home/vsts/work/1/s/deployment/deployment.yml"
