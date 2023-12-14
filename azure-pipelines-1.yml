@@ -28,7 +28,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'docker load -i $(System.ArtifactsDirectory)docker-image/docker-image/nodejs_562.tar'
+    script: 'docker load -i /home/vsts/work/1/a/docker-image/docker-image/nodejs_562.tar'
 
 - task: AzureCLI@2
   inputs:
