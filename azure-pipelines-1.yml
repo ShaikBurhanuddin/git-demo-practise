@@ -22,13 +22,13 @@ steps:
     buildVersionToDownload: 'latest'
     allowPartiallySucceededBuilds: true
     downloadType: 'specific'
-    downloadPath: '$(System.ArtifactsDirectory)'
+    downloadPath: '$(System.ArtifactsDirectory)/docker-image'
     cleanDestinationFolder: true
 
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'docker load -i $(System.ArtifactsDirectory)/nodejs.tar'
+    script: 'docker load -i $(System.ArtifactsDirectory)/docker-image/nodejs.tar'
 
 - task: AzureCLI@2
   inputs:
