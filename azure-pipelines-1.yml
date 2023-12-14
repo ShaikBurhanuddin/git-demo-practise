@@ -33,7 +33,7 @@ steps:
     targetType: 'inline'
     script: |
       az acr login -n mvnrepo.azurecr.io -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-      docker pull mvnrepo.azurecr.io/nodejs:$(imageTag)
+      docker pull mvnrepo.azurecr.io/nodejs:v1-test
 
 - task: Bash@3
   inputs:
