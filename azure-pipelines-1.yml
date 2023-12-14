@@ -34,7 +34,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-    
       # Get the current image tag from the file
       IMAGE_TAG=$(cat /home/vsts/work/1/a/docker-image/docker-image/nodejs_562.tar)
       # Specify the path to your Kubernetes deployment YAML file
