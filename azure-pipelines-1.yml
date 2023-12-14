@@ -28,15 +28,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: |
-      az acr login -n mvnrepo.azurecr.io -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-      docker pull mvnrepo.azurecr.io/nodejs:v1-test
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'docker load -i /home/vsts/work/1/s/nodejs.tar'
-
+    script: 'docker load -i $(System.ArtifactsDirectory)/docker-image/nodejs.tar'
 
 - task: AzureCLI@2
   inputs:
@@ -68,3 +60,4 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: './script2.sh'
+    addSpnToEnvironment: 
