@@ -12,9 +12,6 @@ resources:
 pool:
   vmImage: ubuntu-latest
 
-#variables:
-#  imageTag: '$imageTag'
-
 steps:
 - task: DownloadBuildArtifacts@1
   displayName: 'Download Build ID Artifact'
@@ -38,7 +35,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'docker load -i $(Build.ArtifactStagingDirectory)/nodejs.tar'
+    script: 'docker load -i /home/vsts/work/1/s/nodejs.tar'
 
 
 - task: AzureCLI@2
