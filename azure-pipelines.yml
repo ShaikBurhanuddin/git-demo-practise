@@ -33,7 +33,7 @@ stages:
           docker tag nodejs:$(Build.BuildId) mvnrepo.azurecr.io/nodejs:$(Build.BuildId)
           az acr login -n mvnrepo.azurecr.io -u mvnrepo -p wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ 
           docker push mvnrepo.azurecr.io/nodejs:$(Build.BuildId)
-          docker save -o /home/vsts/work/1/a/nodejs_$(Build.BuildId).tar mvnrepo.azurecr.io/nodejs:$(Build.BuildId)
+          docker save -o /home/vsts/work/1/a/nodejs.tar mvnrepo.azurecr.io/nodejs:$(Build.BuildId)
       displayName: 'Docker Imagetag and push'
 
     - task: PublishBuildArtifacts@1
