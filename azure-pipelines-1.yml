@@ -28,14 +28,14 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'docker load -i /home/vsts/work/1/a/docker-image/docker-image/nodejs_$(Build.BuildId).tar'
+    script: 'docker load -i /home/vsts/work/1/a/docker-image/nodejs_$(Build.BuildId).tar'
 
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       # Get the current image tag from the file
-      IMAGE_TAG=$(cat /home/vsts/work/1/a/docker-image/docker-image/nodejs_$(Build.BuildId).tar)
+      IMAGE_TAG=$(cat /home/vsts/work/1/a/docker-image/nodejs_$(Build.BuildId).tar)
       # Specify the path to your Kubernetes deployment YAML file
       YAML_FILE="/home/vsts/work/1/s/deployment/deployment.yml"
       # Replace the image tag in the YAML file
