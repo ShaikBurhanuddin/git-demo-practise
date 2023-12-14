@@ -25,10 +25,13 @@ steps:
     downloadPath: '$(System.ArtifactsDirectory)/'
     cleanDestinationFolder: true
 
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'docker load -i /home/vsts/work/1/a/docker-image/nodejs_$(Build.BuildId).tar'
+    script: |
+      az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
+      docker load -i /home/vsts/work/1/a/docker-image/nodejs_$(Build.BuildId).tar
 
 - task: Bash@3
   inputs:
