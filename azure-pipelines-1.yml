@@ -31,19 +31,20 @@ steps:
     targetType: 'inline'
     script: |
       az acr login -n mvnrepo.azurecr.io --username mvnrepo --password wFzE/+c2VTXgp4bCqZjrBEfJ8bXC/LHNvxGb0z/5+1+ACRDP4yVJ
-      docker load -i /home/vsts/work/1/a/docker-image/nodejs_$(Build.BuildId).tar
+      docker load -i /home/vsts/work/1/a/docker-image/nodejs.tar
 
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       # Get the current image tag from the file
-      IMAGE_TAG=$(cat /home/vsts/work/1/a/docker-image/nodejs_$(Build.BuildId).tar)
+      IMAGE_TAG=$(docker images --format "{{.Tag}}")
+      echo "$IMAGE_TAG"
       # Specify the path to your Kubernetes deployment YAML file
       YAML_FILE="/home/vsts/work/1/s/deployment/deployment.yml"
       # Replace the image tag in the YAML file
       sed -i "s|image: mvnrepo.azurecr.io/nodejs:.*$|image: mvnrepo.azurecr.io/nodejs:${IMAGE_TAG}|g"  $YAML_FILE
-      echo "Image tag changed to ${IMAGE_TAG}"
+
 
 - task: AzureCLI@2
   inputs:
