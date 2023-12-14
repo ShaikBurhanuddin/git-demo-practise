@@ -22,7 +22,7 @@ steps:
     buildVersionToDownload: 'latest'
     allowPartiallySucceededBuilds: true
     downloadType: 'specific'
-    downloadPath: '$(System.ArtifactsDirectory)/docker-image'
+    downloadPath: '$(System.ArtifactsDirectory)/'
     cleanDestinationFolder: true
 
 - task: Bash@3
